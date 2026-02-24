@@ -3,54 +3,56 @@
     ".panel, .card, .member, .trust-card, .project-card, .redesign-card, .hero-copy, .project-hero-copy, .process-step, .result-card"
   );
 
-  if (!targets.length) return;
-
   const revealModes = ["up", "left", "right", "zoom"];
 
-  targets.forEach((el, index) => {
-    el.classList.add("js-animate");
-    el.dataset.anim = revealModes[index % revealModes.length];
-    el.style.transitionDelay = `${Math.min(index * 45, 260)}ms`;
-  });
+  if (targets.length) {
+    targets.forEach((el, index) => {
+      el.classList.add("js-animate");
+      el.dataset.anim = revealModes[index % revealModes.length];
+      el.style.transitionDelay = `${Math.min(index * 45, 260)}ms`;
+    });
 
-  if (!("IntersectionObserver" in window)) {
-    targets.forEach((el) => el.classList.add("is-visible"));
-  } else {
-    const observer = new IntersectionObserver(
-      (entries, obs) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          entry.target.classList.add("is-visible");
-          obs.unobserve(entry.target);
-        });
-      },
-      { threshold: 0.16, rootMargin: "0px 0px -7% 0px" }
-    );
+    if (!("IntersectionObserver" in window)) {
+      targets.forEach((el) => el.classList.add("is-visible"));
+    } else {
+      const observer = new IntersectionObserver(
+        (entries, obs) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add("is-visible");
+            obs.unobserve(entry.target);
+          });
+        },
+        { threshold: 0.16, rootMargin: "0px 0px -7% 0px" }
+      );
 
-    targets.forEach((el) => observer.observe(el));
+      targets.forEach((el) => observer.observe(el));
+    }
   }
 
   const popTargets = document.querySelectorAll(
     ".section-tag, .trust-tag, h2, .lead, .gallery-note, .services-cta-note, .contact-subtext"
   );
 
-  popTargets.forEach((el) => el.classList.add("js-pop"));
+  if (popTargets.length) {
+    popTargets.forEach((el) => el.classList.add("js-pop"));
 
-  if (!("IntersectionObserver" in window)) {
-    popTargets.forEach((el) => el.classList.add("is-visible"));
-  } else {
-    const popObserver = new IntersectionObserver(
-      (entries, obs) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          entry.target.classList.add("is-visible");
-          obs.unobserve(entry.target);
-        });
-      },
-      { threshold: 0.22, rootMargin: "0px 0px -6% 0px" }
-    );
+    if (!("IntersectionObserver" in window)) {
+      popTargets.forEach((el) => el.classList.add("is-visible"));
+    } else {
+      const popObserver = new IntersectionObserver(
+        (entries, obs) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add("is-visible");
+            obs.unobserve(entry.target);
+          });
+        },
+        { threshold: 0.22, rootMargin: "0px 0px -6% 0px" }
+      );
 
-    popTargets.forEach((el) => popObserver.observe(el));
+      popTargets.forEach((el) => popObserver.observe(el));
+    }
   }
 
   const footer = document.querySelector(".footer");
