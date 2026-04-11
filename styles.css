@@ -1674,6 +1674,12 @@ blockquote {
   padding: 1.2rem;
 }
 
+.project-card-featured {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
 .project-num {
   margin: 0 0 0.5rem;
   color: var(--card-accent-b);
@@ -1690,6 +1696,16 @@ blockquote {
   color: var(--muted);
   font-size: 0.88rem;
   line-height: 1.6;
+}
+
+.project-card-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 0 16px 32px rgba(6, 12, 24, 0.34);
+  object-fit: cover;
 }
 
 .project-stack {
